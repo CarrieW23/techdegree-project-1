@@ -116,7 +116,7 @@ h1 {
 }
 
 .tag {
-  font-style: italic;
+  font-style: normal;
 }
 
 .tag:before {

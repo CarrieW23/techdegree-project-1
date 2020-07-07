@@ -39,7 +39,8 @@ var quotes = [
   quote: 'The most exciting, challenging, and significant relationship of all is the one you have with yourself.',
   source:'Carrie Bradshaw',
   citation:'Sex and the City',
-  year: 2004
+  year: 2004,
+  tag: 'Drama'
 }
 ]
 
@@ -63,12 +64,15 @@ function printQuote () {
     '<p class="quote">' + randomQuote.quote + '</p>' +
     '<p class="source">' + randomQuote.source
       if (randomQuote.citation) {
-        + '<span class="citation">' + randomQuote.citation + '</span>'
+        quoteString += '<span class="citation">' + randomQuote.citation + '</span>'
     }
       if (randomQuote.year) {
-      + '<span class="year">'+  randomQuote.year + '</span>'
+        quoteString += '<span class="year">'+  randomQuote.year + '</span>'
     }
-    + '</p>';
+    if (randomQuote.tag) {
+      quoteString += '<span class="tag">' + randomQuote.tag + '</span>'
+    }
+    quoteString += '</p>';
 
   document.getElementById('quote-box').innerHTML = quoteString;
 }
