@@ -12,26 +12,28 @@ project 1 - A Random Quote Generator
 ***/
 var quotes = [
   {
-  quote: '"For love casts out fear and gratitude can conquer pride."',
+  quote: 'For love casts out fear and gratitude can conquer pride.',
   source:'Louisa May Alcott',
   citation:'Little Women',
   year: 1868
 },
 {
-  quote:'"A second chance doesn\'t mean you\'re in the clear. In many ways, it is the more difficult thing. Because a second chance means that you have to try harder. You must rise to the challenge without the blind optimism of ignorance."',
+  quote:'A second chance doesn\'t mean you\'re in the clear. In many ways, it is the more difficult thing. Because a second chance means that you have to try harder. You must rise to the challenge without the blind optimism of ignorance.',
   source:'Ling Ma',
   citation:'Severance',
   year: 2018
 },
 {
-  quote:'"When you\'re a small piece of a big puzzle, you gotta fix what you can."',
+  quote:'When you\'re a small piece of a big puzzle, you gotta fix what you can.',
   source:'Hushpuppy',
   citation:'Beast of the Southern Wild',
   year: 2012
 },
 {
-  quote: '"What I have in mind is that art may be bad, good or indifferent, but, whatever adjective is used, we must call it art, and bad art is still art in the same way that a bad emotion is still an emotion."',
+  quote: 'What I have in mind is that art may be bad, good or indifferent, but, whatever adjective is used, we must call it art, and bad art is still art in the same way that a bad emotion is still an emotion.',
   source:'Marcel DuChamp',
+  citation:'',
+  year: ''
 },
 {
   quote: 'The most exciting, challenging, and significant relationship of all is the one you have with yourself.',
@@ -42,15 +44,34 @@ var quotes = [
 ]
 
 
+
 /***
  * `getRandomQuote` function
 ***/
-
+function getRandomQuote (arr) {
+  var randomNumber = Math.floor( Math.random() * arr.length);
+  return quotes[randomNumber];
+}
 
 
 /***
  * `printQuote` function
 ***/
+function printQuote () {
+  var randomQuote = getRandomQuote(quotes);
+  var quoteString =
+    '<p class="quote">' + randomQuote.quote + '</p>' +
+    '<p class="source">' + randomQuote.source
+      if (randomQuote.citation) {
+        + '<span class="citation">' + randomQuote.citation + '</span>'
+    }
+      if (randomQuote.year) {
+      + '<span class="year">'+  randomQuote.year + '</span>'
+    }
+    + '</p>';
+
+  document.getElementById('quote-box').innerHTML = quoteString;
+}
 
 
 
