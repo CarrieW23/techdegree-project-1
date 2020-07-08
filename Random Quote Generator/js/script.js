@@ -53,11 +53,17 @@ function getRandomQuote (arr) {
   const randomNumber = Math.floor( Math.random() * arr.length);
   return quotes[randomNumber];
 }
-
-
+/***
+  *function to retrieve a random color and set it as the background getRandomColor
+***/
+function getRandomColor() {
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  document.querySelector('body').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+}
 /***
  * `printQuote` function nested inside setInterval from https://www.w3schools.com/jsref/met_win_setinterval.asp
- followed by a random color function to change the background each time the quote changes.
 ***/
 setInterval(function printQuote () {
   const randomQuote = getRandomQuote(quotes);
@@ -76,13 +82,6 @@ setInterval(function printQuote () {
     quoteString += '</p>';
 
   document.getElementById('quote-box').innerHTML = quoteString;
-
-  function getRandomColor() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    document.querySelector('body').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-  }
   getRandomColor();
 }, 10000);
 
