@@ -8,7 +8,7 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /***
- * `quotes` array
+ * `quotes` array with five objects
 ***/
 var quotes = [
   {
@@ -47,20 +47,21 @@ var quotes = [
 
 
 /***
- * `getRandomQuote` function
+ * function to retrieve random quote by using random number to select object from quote array
 ***/
 function getRandomQuote (arr) {
-  var randomNumber = Math.floor( Math.random() * arr.length);
+  const randomNumber = Math.floor( Math.random() * arr.length);
   return quotes[randomNumber];
 }
 
 
 /***
- * `printQuote` function
+ * `printQuote` function nested inside setInterval from https://www.w3schools.com/jsref/met_win_setinterval.asp
+ followed by a random color function to change the background each time the quote changes.
 ***/
-function printQuote () {
-  var randomQuote = getRandomQuote(quotes);
-  var quoteString =
+setInterval(function printQuote () {
+  const randomQuote = getRandomQuote(quotes);
+  let quoteString =
     '<p class="quote">' + randomQuote.quote + '</p>' +
     '<p class="source">' + randomQuote.source
       if (randomQuote.citation) {
@@ -75,7 +76,20 @@ function printQuote () {
     quoteString += '</p>';
 
   document.getElementById('quote-box').innerHTML = quoteString;
-}
+
+  function getRandomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    document.querySelector('body').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    getRandomColor();
+  }
+}, 10000);
+
+
+
+// random color function from stack overflow: https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
+
 
 
 
@@ -83,5 +97,3 @@ function printQuote () {
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
-
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
