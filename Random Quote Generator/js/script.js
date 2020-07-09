@@ -10,6 +10,8 @@ project 1 - A Random Quote Generator
 /***
  * `quotes` array with five objects
 ***/
+const intervalID = setInterval(printQuote, 10000);
+
 const quotes = [
   {
   quote: 'For love casts out fear and gratitude can conquer pride.',
@@ -67,7 +69,7 @@ function getRandomColor() {
  * `printQuote` function nested inside setInterval from https://www.w3schools.com/jsref/met_win_setinterval.asp
 ***/
 
-setInterval(function printQuote() {
+function printQuote() {
   const randomQuote = getRandomQuote(quotes);
   let quoteString =
     '<p class="quote">' + randomQuote.quote + '</p>' +
@@ -85,11 +87,13 @@ setInterval(function printQuote() {
 
   document.getElementById('quote-box').innerHTML = quoteString;
   getRandomColor();
-  document.getElementById('load-quote').addEventListener("click", printQuote, false);
-}, 10000);
 
+}
+
+printQuote();
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
+  document.getElementById('load-quote').addEventListener("click", printQuote, false);
