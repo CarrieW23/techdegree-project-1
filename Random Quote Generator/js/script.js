@@ -10,7 +10,7 @@ project 1 - A Random Quote Generator
 /***
  * `quotes` array with five objects
 ***/
-var quotes = [
+const quotes = [
   {
   quote: 'For love casts out fear and gratitude can conquer pride.',
   source:'Louisa May Alcott',
@@ -55,6 +55,7 @@ function getRandomQuote (arr) {
 }
 /***
   *function to retrieve a random color and set it as the background getRandomColor
+  *random color function from stack overflow: https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
 ***/
 function getRandomColor() {
   let r = Math.floor(Math.random() * 256);
@@ -65,7 +66,8 @@ function getRandomColor() {
 /***
  * `printQuote` function nested inside setInterval from https://www.w3schools.com/jsref/met_win_setinterval.asp
 ***/
-setInterval(function printQuote () {
+
+setInterval(function printQuote() {
   const randomQuote = getRandomQuote(quotes);
   let quoteString =
     '<p class="quote">' + randomQuote.quote + '</p>' +
@@ -83,15 +85,8 @@ setInterval(function printQuote () {
 
   document.getElementById('quote-box').innerHTML = quoteString;
   getRandomColor();
+  document.getElementById('load-quote').addEventListener("click", printQuote, false);
 }, 10000);
-
-
-
-
-
-// random color function from stack overflow: https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
-
-
 
 
 /***
